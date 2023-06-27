@@ -1,0 +1,23 @@
+steps:
+- name: 'golang:1.20.5-bullseye'
+  id: 'testing'
+  entrypoint: '/bin/sh'
+  args:
+  - '-c'
+  - |
+      go mod tidy \
+      && go test -v
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'build image'
+  args:
+  - 'build'
+  - '-t'
+  - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myapp:$SHORT_SHA'
+  - '-f'
+  - './Dockerfile'
+  - '.'
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'push image'
+  args:
+  - 'push'
+  - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myapp:$SHORT_SHA'
