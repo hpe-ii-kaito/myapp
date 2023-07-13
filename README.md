@@ -4,7 +4,6 @@ Sample Golang app using [echo](https://echo.labstack.com/)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/kaitoii11/myapp)
 
-
 ## Dependabot
 Maintains dependencies of
 - gomod
